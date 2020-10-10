@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import com.gimnasio.app.models.Cliente;
@@ -21,8 +22,9 @@ import com.gimnasio.app.repository.TrabajadorRepository;
 import com.gimnasio.app.repository.VentaRepository;
 
 @Component
-public class Population  implements CommandLineRunner{
+public class Population implements CommandLineRunner{
 
+	
 	@Autowired
 	private TrabajadorRepository trabajadorRepository;
 	
@@ -35,32 +37,35 @@ public class Population  implements CommandLineRunner{
 	@Autowired
 	private VentaRepository ventaRepository;
 	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+	
+	
 	@Override
 	public void run(String... args) throws Exception {
-	      
+	      /*
 		 
+	      Rol rol = Rol.USER_ROLE;
 		  //Crear primer trabajador
 		  Trabajador t1 = new Trabajador();
 	      t1.setCorreo("admin@gmail.com");
-	      t1.setPassword("12345");
-	      Rol rol = Rol.USER_ROLE;
+	      t1.setPassword(passwordEncoder.encode("12345"));
 	      t1.setRole(rol);
 	      t1.setActivo(true);
 	      trabajadorRepository.save(t1);
-	      
 	    
 	      //Crear segundo trabajador
 		  Trabajador t2 = new Trabajador();
 	      t2.setCorreo("trabajador@gmail.com");
-	      t2.setPassword("12345");
+	      t2.setPassword(passwordEncoder.encode("12345"));
 	      t2.setRole(rol);
 	      t2.setActivo(false);
 	      trabajadorRepository.save(t2);
 	      
 	    //Crear segundo trabajador
 		  Trabajador t3 = new Trabajador();
-	      t3.setCorreo("administrador@gmail.com");
-	      t3.setPassword("#$ddfrtf$");
+	      t3.setCorreo("admin@gmail.com");
+	      t3.setPassword(passwordEncoder.encode("12345"));
 	      Rol rol1 = Rol.ADMIN_ROLE;
 	      t3.setActivo(true);
 	      t3.setRole(rol1);
@@ -77,13 +82,13 @@ public class Population  implements CommandLineRunner{
 	      
 	      SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 	      Date date1 = sdf.parse("2009-12-31");
-	      Date date2 = sdf.parse("2010-01-31");
-	      
+	      Date date3 = sdf.parse("2021-01-31");
+
 	      Cliente c2 = new Cliente();
 		  c2.setCorreoElectronico("doomlord97@gmail.com");
 		  c2.setActivo(true);
 		  c2.setFechaInicio(date1);
-		  c2.setFechaTermino(date2);
+		  c2.setFechaTermino(date3);
 		  c2.setNombre("Jesus Samano");
 		  c2.setTelefono("7341157770");
 		  clienteRepository.save(c2);
@@ -138,9 +143,7 @@ public class Population  implements CommandLineRunner{
 	      venta.setItems(items);
 	      venta.setPagoTotal(venta.getTotal());;
 	      ventaRepository.save(venta);
-	      
-	      ventaRepository.findAll().forEach(System.out::println);;
-	      
+	      	*/
 	  }
 
 }

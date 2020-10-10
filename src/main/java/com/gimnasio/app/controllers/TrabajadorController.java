@@ -27,6 +27,7 @@ public class TrabajadorController {
 		List<Trabajador> trabajadores = trabajadorService.listarTrabajadores();
 		model.addAttribute("trabajadores", trabajadores);
 		model.addAttribute("titulo","Seccion de trabajadores");
+			
 		return "trabajadores/principal";
 	}
 	

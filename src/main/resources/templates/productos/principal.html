@@ -116,7 +116,7 @@
 			</div>
 
 			<div class="row m-5">
-				<div class="col-12">
+				<div class="col-12"  sec:authorize="hasAuthority('ADMIN_ROLE')">
 					<div class="white-box">
 						<div class="col-12 m-5">
 						<form th:action="@{eliminar-producto}" method="post">

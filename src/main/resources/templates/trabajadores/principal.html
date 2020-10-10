@@ -65,7 +65,7 @@
 										<th>CONTRASEÑA</th>
 										<th>ROL</th>
 										<th>ESTADO</th>
-										<th>ACCIONES</th>
+										<th sec:authorize="hasAuthority('ADMIN_ROLE')">ACCIONES</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -73,13 +73,13 @@
 									<tr class="advance-table-row">
 										<td th:text="${trabajador.id}"></td>
 										<td th:text="${trabajador.correo}"></td>
-										<td th:text="${trabajador.password}"></td>
+										<td>***********</td>
 										<td th:text="${trabajador.role}"></td>
 										<td th:text="${trabajador.activo} ? 'Activo' : 'Inactivo'"></td>
-										<td>
+										<td sec:authorize="hasAuthority('ADMIN_ROLE')">
 											<div class="btn-group">
 												<a class="btn btn-block btn-danger"  th:href="@{'/trabajadores/eliminar/' + ${trabajador.id}}">Eliminar</a>
-												<a class="btn btn-block btn-warning" th:href="@{'/trabajadores/actualizar/' + ${trabajador.id}}">Actualizar</a>
+												<a class="btn btn-block btn-warning" th:href="@{'/trabajadores/actualizar/' + ${trabajador.id}}" >Actualizar</a>
 											</div>
 										</td>
 									</tr>

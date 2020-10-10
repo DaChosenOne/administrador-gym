@@ -66,7 +66,7 @@
 										<th>OBSERVACIONES</th>
 										<th>TOTAL</th>
 										<th>TICKET</th>
-										<th>ACCION</th>
+										<th sec:authorize="hasAuthority('ADMIN_ROLE')">ACCION</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -77,10 +77,10 @@
 										<td th:text="${#dates.format(venta.fechaVenta, 'dd-MM-yyyy')}"></td>
 										<td th:text="${venta.observaciones}"></td>
 										<td th:text="${venta.pagoTotal}"></td>
-										<td>
+										<td >
 										<a class="btn btn-primary-rounded" th:href="@{'/ventas/ticket/' + ${venta.id} }" target="blank" >MOSTRAR TICKET COMPLETO</a>
-										</td>
-										<td>
+										</td  >
+										<td sec:authorize="hasAuthority('ADMIN_ROLE')">
 									     <a class="btn btn-danger" th:href="@{'/ventas/eliminar-venta/' + ${venta.id} }">ELIMINAR</a>
 										</td>
 										
