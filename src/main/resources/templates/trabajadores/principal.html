@@ -47,7 +47,7 @@
 	<div id="page-wrapper">
 		<div class="container-fluid">
 			<div th:insert="shared/bar"></div>
-			<div class="col-12">
+			<div class="col-12" sec:authorize="hasAuthority('ADMIN_ROLE')">
 				<a href="/trabajadores/agregar-trabajador" 
 					class="btn btn-info pull-right m-l-20 hidden-xs hidden-sm waves-effect waves-light">Agregar trabajador</a>
 			</div>
