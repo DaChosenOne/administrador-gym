@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="icon" type="image/png" sizes="16x16"
+	href="../plugins/images/favicon.png">
+<title>Cross-Sport Gym</title>
+<!-- Bootstrap Core CSS -->
+<link href="/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Menu CSS -->
+<link
+	href="/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css"
+	rel="stylesheet">
+<!-- animation CSS -->
+<link href="/css/animate.css" rel="stylesheet">
+<!-- Custom CSS -->
+<link href="/css/style.css" rel="stylesheet">
+<link href="/plugins/bower_components/bootstrap-datepicker/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css" />
+    <!-- Daterange picker plugins css -->
+    <link href="/plugins/bower_components/timepicker/bootstrap-timepicker.min.css" rel="stylesheet">
+    <link href="/plugins/bower_components/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+<!-- color CSS -->
+<link href="/css/colors/megna-dark.css" id="theme" rel="stylesheet">
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+
+</head>
+
+<body class="fix-header">
+	<!-- ============================================================== -->
+	<!-- Header -->
+	<!-- ============================================================== -->
+	<div th:insert="shared/header"></div>
+	<!-- ============================================================== -->
+	<!-- Fin header -->
+	<!-- ============================================================== -->
+
+	<!-- ============================================================== -->
+	<!-- Header -->
+	<!-- ============================================================== -->
+	<div th:insert="shared/navbar"></div>
+	<!-- ============================================================== -->
+	<!-- Fin header -->
+	<!-- ============================================================== -->
+
+
+	<div id="page-wrapper">
+		<div class="container-fluid">
+			<div th:insert="shared/bar"></div>
+		</div>
+		<div class="row m-5">
+			<div class="col-md-12">
+				<div class="white-box">
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="white-box">
+								<h3 class="box-title m-b-0">Actualizacion de los datos del cliente</h3>
+								<p class="text-muted m-b-30 font-13">Llenar correctamente</p>
+								<form class="form-horizontal" th:action="@{/clientes/agregar-cliente}"
+									th:object="${cliente}" method="post">
+								   <input hidden="" id="id" name="id" th:field="*{id}" th:value="*{id}" value="${cliente.id}">
+									<div class="form-group">
+										<label class="col-md-12" for="text">Nombre completo</label>
+										<div class="col-md-12">
+											<input required="required" type="text" id="text" name="text"
+												class="form-control" th:field="*{nombre}"
+												placeholder="Nombre completo">
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="col-md-12" for="example-email">Correo
+											electronico <span class="help">, ejemplo:
+												"example@gmail.com"</span>
+										</label>
+										<div class="col-md-12">
+											<input required="required" type="email" id="email"
+												name="email" class="form-control"
+												th:field="*{correoElectronico}"
+												placeholder="Correo electronico">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-md-12">Numero de telefono</label>
+										<div class="col-md-12">
+											<input required="required" type="number" class="form-control"
+												placeholder="Numero de telefono" th:field="*{telefono}">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-md-12">Fecha de inicio</label>
+										<div class="col-md-12">
+										<div class="input-group">
+											<input type="text" class="form-control"
+												id="datepicker-autoclose" placeholder="yyyy/mm/dd" th:field="*{fechaInicio}"  required="required">
+											<span class="input-group-addon"><i
+												class="icon-calender"></i></span>
+										</div>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-md-12">Fecha de termino</label>
+										<div class="col-md-12">
+										<div class="input-group">
+											<input type="text" class="form-control"
+												id="datepicker-autocloses" placeholder="yyyy/mm/dd" th:field="*{fechaTermino}" th:value="${#dates.format(cliente.fechaTermino, 'yyyy/MM/dd')}" required="required">
+											<span class="input-group-addon"><i
+												class="icon-calender"></i></span>
+										</div>
+										</div>
+									</div>
+									
+									
+
+							<button type="submit" class="btn btn-warning">Actualizar</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+	<!-- /.container-fluid -->
+	<footer class="footer text-center"> 2020 &copy; Cross-Gym </footer>
+	</div>
+	<!-- ============================================================== -->
+	<!-- End Page Content -->
+	<!-- ============================================================== -->
+	<!-- /#wrapper -->
+	<!-- jQuery -->
+	<script src="/plugins/bower_components/jquery/dist/jquery.min.js"></script>
+	<!-- Bootstrap Core JavaScript -->
+	<script src="/bootstrap/dist/js/bootstrap.min.js"></script>
+	<!-- Menu Plugin JavaScript -->
+	<script
+		src="/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js"></script>
+	<!--slimscroll JavaScript -->
+	<script src="/js/jquery.slimscroll.js"></script>
+	<!--Wave Effects -->
+	<script src="/js/waves.js"></script>
+	<!-- Custom Theme JavaScript -->
+	<script src="/js/custom.min.js"></script>
+	<!--Style Switcher -->
+	<script src="/plugins/bower_components/styleswitcher/jQuery.style.switcher.js"></script>
+	<script src="/plugins/bower_components/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+    <script src="/plugins/bower_components/bootstrap-datepicker/bootstrap-datepicker.es.js"></script>
+	
+    <!-- Date range Plugin JavaScript -->
+    <script src="/plugins/bower_components/timepicker/bootstrap-timepicker.min.js"></script>
+    <script src="/plugins/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <script>
+    jQuery('.mydatepicker, #datepicker').datepicker();
+    jQuery('#datepicker-autoclose').datepicker({
+        autoclose: true,
+        todayHighlight: true,
+        language: 'es',
+        format: 'yyyy/mm/dd',
+
+    });
+    jQuery('#datepicker-autocloses').datepicker({
+        autoclose: true,
+        todayHighlight: true,
+        language: 'es',
+        format: 'yyyy/mm/dd',
+    });
+    
+    var valor = document.getElementById("datepicker-autoclose").value;
+    var valor1 = document.getElementById("datepicker-autocloses").value;
+
+    document.getElementById("datepicker-autoclose").value = valor.split('-').join('/');
+    document.getElementById("datepicker-autocloses").value = valor1.split('-').join('/');
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="icon" type="image/png" sizes="16x16"
+	href="../plugins/images/favicon.png">
+<title>Cross-Sport Gym</title>
+<!-- Bootstrap Core CSS -->
+<link href="/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Menu CSS -->
+<link
+	href="/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css"
+	rel="stylesheet">
+<!-- animation CSS -->
+<link href="/css/animate.css" rel="stylesheet">
+<!-- Custom CSS -->
+<link href="/css/style.css" rel="stylesheet">
+<link href="/plugins/bower_components/sweetalert/sweetalert.css"
+	rel="stylesheet" type="text/css">
+<!-- color CSS -->
+<link href="/css/colors/megna-dark.css" id="theme" rel="stylesheet">
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+
+</head>
+
+<body class="fix-header">
+	<!-- ============================================================== -->
+	<!-- Header -->
+	<!-- ============================================================== -->
+	<div th:insert="shared/header"></div>
+	<!-- ============================================================== -->
+	<!-- Fin header -->
+	<!-- ============================================================== -->
+
+	<!-- ============================================================== -->
+	<!-- Header -->
+	<!-- ============================================================== -->
+	<div th:insert="shared/navbar"></div>
+	<!-- ============================================================== -->
+	<!-- Fin header -->
+	<!-- ============================================================== -->
+
+
+	<div id="page-wrapper">
+		<div class="container-fluid">
+			<div th:insert="shared/bar"></div>
+			<div class="row">
+				<div class="col-12">
+					<button
+						class="btn btn-info pull-right m-l-20 hidden-xs hidden-sm waves-effect waves-light"
+						data-toggle="modal" data-target="#exampleModal"
+						data-whatever="@fat">Agregar un producto</button>
+				</div>
+				<div class="modal fade" id="exampleModal" tabindex="-1"
+					role="dialog" aria-labelledby="exampleModalLabel1">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal"
+									aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+								<h4 class="modal-title" id="exampleModalLabel1">LLenar
+									datos del producto</h4>
+							</div>
+							<div class="modal-body">
+								<form th:object="${producto}" method="post"
+									th:action="@{agregar-producto}">
+									<div class="form-group">
+										<label for="recipient-name1" class="control-label">SKU:</label>
+										<input type="text" class="form-control" id="recipient-name1"
+											th:field="*{sku}" required="required">
+									</div>
+									<div class="form-group">
+										<label for="recipient-name2" class="control-label">Marca:</label>
+										<input type="text" class="form-control" id="recipient-name2"
+											th:field="*{marca}" required="required">
+									</div>
+									<div class="form-group">
+										<label for="recipient-name3" class="control-label">Categoria:</label>
+										<input type="text" class="form-control" id="recipient-name3"
+											th:field="*{categoria}" required="required">
+									</div>
+									<div class="form-group">
+										<label for="recipient-name4" class="control-label">Nombre:</label>
+										<input type="text" class="form-control" id="recipient-name4"
+											th:field="*{nombre}" required="required">
+									</div>
+									<div class="form-group">
+										<label for="recipient-name5" class="control-label">Precio:</label>
+										<input type="text" class="form-control" id="recipient-name5"
+											th:field="*{precio}" required="required">
+									</div>
+									<label for="recipient-name6" class="control-label">Cantidad:</label>
+									<input type="text" class="form-control" id="recipient-name6"
+										th:field="*{cantidad}"  required="required">
+
+									<div class="modal-footer">
+										<button type="button" class="btn btn-default"
+											data-dismiss="modal">Cerrar</button>
+										<button type="submit" class="btn btn-primary">Guardar</button>
+									</div>
+								</form>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			
+			
+			</div>
+
+			<div class="row m-5">
+				<div class="col-12">
+					<div class="white-box">
+						<div class="col-12 m-5">
+						<form th:action="@{eliminar-producto}" method="post">
+							<h3 class="box-title m-b-0">Ingrese sku para eliminar
+								producto</h3>
+							<div class="form-group">
+								<div class="col-10">
+									<input type="text" class="form-control" id="inputEmail10" name="sku"
+										placeholder="SKU">
+								</div>
+								<div class="col-12">
+									<button type="submit"
+										class="btn btn-danger waves-effect waves-danger m-t-10">Eliminar</button>
+								</div>
+							</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="white-box">
+						<h3 class="box-title m-b-0">Lista de productos</h3>
+						<p class="text-muted m-b-30">Informacion general</p>
+						<div class="table-responsive">
+							<table id="myTable" class="table table-striped">
+								<thead>
+									<tr>
+										<th>ID</th>
+										<th>SKU</th>
+										<th>CATEGORIA</th>
+										<th>MARCA</th>
+										<th>NOMBRE</th>
+										<th>CANTIDAD</th>
+										<th>PRECIO</th>
+										<th>ACCION</th>
+									</tr>
+								</thead>
+								<tbody>
+
+									<tr th:each="producto: ${productos}">
+										<td th:text="${producto.id}"></td>
+										<td th:text="${producto.sku}"></td>
+										<td th:text="${producto.categoria}"></td>
+										<td th:text="${producto.marca}"></td>
+										<td th:text="${producto.nombre}"></td>
+										<td th:text="${producto.cantidad}"></td>
+										<td th:text="'$'+${producto.precio}"></td>
+										<td><button class="btn btn-default btn-outline"
+												data-toggle="modal" th:attr="data-target='#exampleModal'+${producto.id}" 
+												data-whatever="@fat">EDITAR INFORMACION</button></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+
+				<div th:each="p: ${productos}">
+					<div class="modal fade"  th:id="'exampleModal'+${p.id}" tabindex="-1"
+					role="dialog" aria-labelledby="exampleModalLabel1">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal"
+									aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+								<h4 class="modal-title" th:id="'exampleModal'+${p.id}">Actualizacion del producto</h4>
+							</div>
+							<div class="modal-body">
+								<form  method="post" th:action="@{actualizar-producto}">
+									<input type="text" hidden="" th:value="${p.id}" name="id" >
+									<div class="form-group">
+										<label for="recipient-sku" class="control-label">SKU:</label>
+										<input type="text" class="form-control" id="recipient-sku"
+											th:value="${p.sku}" required="required" name="sku" >
+									</div>
+									<div class="form-group">
+										<label for="recipient-marca" class="control-label">Marca:</label>
+										<input type="text" class="form-control" id="recipient-marca"
+											th:value="${p.marca}" required="required" name="marca" >
+									</div>
+									<div class="form-group">
+										<label for="recipient-categoria" class="control-label">Categoria:</label>
+										<input type="text" class="form-control" id="recipient-categoria"
+											th:value="${p.categoria}" required="required" name="categoria">
+									</div>
+									<div class="form-group">
+										<label for="recipient-nombre" class="control-label">Nombre:</label>
+										<input type="text" class="form-control" id="recipient-nombre"
+											th:value="${p.nombre}" required="required"  name="nombre">
+									</div>
+									<div class="form-group">
+										<label for="recipient-precio" class="control-label">Precio:</label>
+										<input type="text" class="form-control" id="recipient-precio"
+											th:value="${p.precio}" required="required" name="precio" >
+									</div>
+									<div class="form-group">
+									<label for="recipient-cantidad" class="control-label">Cantidad:</label>
+									<input type="text" class="form-control" id="recipient-cantidad"
+										th:value="${p.cantidad}" required="required" name="cantidad">
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-default"
+											data-dismiss="modal">Cerrar</button>
+										<button type="submit" class="btn btn-warning">Actualizar</button>
+									</div>
+								</form>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			
+			
+				
+				</div>
+
+
+
+			<!-- /.container-fluid -->
+			<footer class="footer text-center"> 2020 &copy; Cross-Gym </footer>
+		</div>
+		<!-- ============================================================== -->
+		<!-- End Page Content -->
+		<!-- ============================================================== -->
+		<!-- /#wrapper -->
+		<!-- jQuery -->
+		<script src="/plugins/bower_components/jquery/dist/jquery.min.js"></script>
+		<!-- Bootstrap Core JavaScript -->
+		<script src="/bootstrap/dist/js/bootstrap.min.js"></script>
+		<!-- Menu Plugin JavaScript -->
+		<script
+			src="/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js"></script>
+		<!--slimscroll JavaScript -->
+		<script src="/js/jquery.slimscroll.js"></script>
+		<!--Wave Effects -->
+		<script src="/js/waves.js"></script>
+		<!-- Custom Theme JavaScript -->
+		<script src="/js/custom.min.js"></script>
+		<script src="/plugins/bower_components/sweetalert/sweetalert.min.js"></script>
+		<script
+			src="/plugins/bower_components/sweetalert/jquery.sweet-alert.custom.js"></script>
+</body>
+
+</html>

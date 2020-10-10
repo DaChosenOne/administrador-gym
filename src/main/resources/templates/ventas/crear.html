@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="icon" type="image/png" sizes="16x16"
+	href="../plugins/images/favicon.png">
+<title>Cross-Sport Gym</title>
+<!-- Bootstrap Core CSS -->
+<link href="/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Menu CSS -->
+<link
+	href="/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css"
+	rel="stylesheet">
+<!-- animation CSS -->
+<link href="/css/animate.css" rel="stylesheet">
+<!-- Custom CSS -->
+<link href="/css/style.css" rel="stylesheet">
+<!-- color CSS -->
+<link href="/css/colors/megna-dark.css" id="theme" rel="stylesheet">
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+
+</head>
+
+<body class="fix-header">
+	<!-- ============================================================== -->
+	<!-- Header -->
+	<!-- ============================================================== -->
+	<div th:insert="shared/header"></div>
+	<!-- ============================================================== -->
+	<!-- Fin header -->
+	<!-- ============================================================== -->
+
+	<!-- ============================================================== -->
+	<!-- Header -->
+	<!-- ============================================================== -->
+	<div th:insert="shared/navbar"></div>
+	<!-- ============================================================== -->
+	<!-- Fin header -->
+	<!-- ============================================================== -->
+
+
+	<div id="page-wrapper">
+		<div class="container-fluid">
+			<div th:insert="shared/bar"></div>
+		</div>
+		<div class="row m-5">
+			<div class="col-md-12">
+				<div class="white-box">
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="white-box">
+								<h3 class="box-title m-b-0">Formulario de venta</h3>
+								<p class="text-muted m-b-30 font-13">Llenar correctamente</p>
+								<form class="form-horizontal" th:action="@{agregar-venta}"
+									method="post">
+									<div class="form-group">
+										<label class="col-md-12" for="example-email">Nombre
+											del vendedor</label>
+										<div class="col-md-12">
+											<input required="required" type="text" id="email"
+												name="nombre" class="form-control"
+												placeholder="Nombre del vendedor">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-md-12" for="example-email">Observaciones</label>
+										<div class="col-md-12">
+											<input required="required" type="text" id="email1"
+												name="observaciones" class="form-control"
+												placeholder="Observaciones">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-md-12" for="example-email">Descuento</label>
+										<div class="col-md-12">
+											<input required="required" type="number" id="email2"
+												name="descuento" class="form-control" placeholder="Descuento">
+										</div>
+									</div>
+									<div class="input_fields_wrap">
+										<div class="form-group">
+											<label class="col-md-3" for="example-email">Unidades</label>
+											<label class="col-md-9" for="example-email">Producto</label>
+											<div class="col-md-3">
+												<input required="required" type="number" id="email21"
+													name="unidad" class="form-control" placeholder="Unidades" min="1">
+											</div>
+											<div class="col-md-9">
+												<select class="form-control" name="producto"
+													data-placeholder="Eligue un producto" tabindex="1" required="required">
+													<option th:each="producto: ${productos}"
+														th:text="${producto.marca} + ' ' +${producto.nombre} + ' ---> $'+ ${producto.precio}" th:value="${producto.id}"></option>
+												</select>
+											</div>
+										</div>
+									</div>
+									<div class="form-group">
+									<div class="col-md-6">
+								        <button class="add_field_button">Agregar otro producto</button>
+								        </div>
+									</div>
+								    <div class="form-group">
+									<div class="col-md-6">
+								    <button class="btn btn-success" type="submit">Realizar venta</button>
+								    </div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- /.container-fluid -->
+	<footer class="footer text-center"> 2020 &copy; Cross-Gym </footer>
+	</div>
+	<!-- ============================================================== -->
+	<!-- End Page Content -->
+	<!-- ============================================================== -->
+	<!-- /#wrapper -->
+	<!-- jQuery -->
+	<script src="/plugins/bower_components/jquery/dist/jquery.min.js"></script>
+	<!-- Bootstrap Core JavaScript -->
+	<script src="/bootstrap/dist/js/bootstrap.min.js"></script>
+	<!-- Menu Plugin JavaScript -->
+	<script
+		src="/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js"></script>
+	<!--slimscroll JavaScript -->
+	<script src="/js/jquery.slimscroll.js"></script>
+	<!--Wave Effects -->
+	<script src="/js/waves.js"></script>
+	<!-- Custom Theme JavaScript -->
+	<script src="/js/custom.min.js"></script>
+	<!--Style Switcher -->
+	<script
+		src="/plugins/bower_components/styleswitcher/jQuery.style.switcher.js"></script>
+
+	<script >
+	$(document).ready(function() {
+	    var max_fields      = 10; //maximum input boxes allowed
+	    var wrapper         = $(".input_fields_wrap"); //Fields wrapper
+	    var add_button      = $(".add_field_button"); //Add button ID
+
+	    
+	    var x = 1; //initlal text box count
+	    $(add_button).click(function(e){ //on add input button click
+	        e.preventDefault();
+	        if(x < max_fields){ //max input box allowed
+	            x++; //text box increment
+	            $(wrapper).append(`<div class="form-group"><label class="col-md-3" for="example-email">Unidades</label><label class="col-md-9" for="example-email">Producto</label><div class="col-md-3"><input required="required" min="1" type="number" name="unidad" id="unidad[${x}]" class="form-control" placeholder="Unidades"></div><div class="col-md-9"><select class="form-control" name="producto" id="producto[${x}]" onclick="loadData('producto[${x}]')" data-placeholder="Eligue un producto"></select></div></div>`);
+	        
+	            
+	            
+	        }
+	    });
+	    
+	    
+	    
+	    $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
+	        e.preventDefault(); $(this).parent('div').remove(); x--;
+	    })
+	});
+	
+	
+	</script>
+
+   <script th:inline="javascript">
+   function loadData(producto){
+	   /*<![CDATA[*/
+	   
+
+	   var productos = /*[[${productos}]]*/ null;
+
+	   /*]]>*/
+	   var dropdown = document.getElementById(producto);
+	   document.getElementById(producto).onclick = null;
+       console.log(productos);
+	    for(var i = 0; i<productos.length;i++)
+	    {
+	    	
+	    	//dropdown.options[i] = new Option(producto[i].nombre,"ddedmk");
+	    	//dropdown.options[i] = new option(productos[i].nombre)
+	    	//  var option = document.createElement("option");
+	    	//  option.text = productos[i].nombre;
+	    	//  dropdown.add(option);
+            document.getElementById(producto).innerHTML += "<option value="+productos[i].id+ ">"+productos[i].marca+" "+productos[i].nombre+" ---> $"+productos[i].precio +"</option>"; 
+            //"${producto.marca} + ' ' +${producto.nombre} + ' ---> $'+ ${producto.precio}"
+	    }
+	    
+	    
+	}
+   
+   </script>
+	
+		 
+</body>
+</html>

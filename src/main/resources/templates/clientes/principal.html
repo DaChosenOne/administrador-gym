@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="icon" type="image/png" sizes="16x16"
+	href="../plugins/images/favicon.png">
+<title>Cross-Sport Gym</title>
+<!-- Bootstrap Core CSS -->
+<link href="/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Menu CSS -->
+<link
+	href="/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css"
+	rel="stylesheet">
+<!-- animation CSS -->
+<link href="/css/animate.css" rel="stylesheet">
+<!-- Custom CSS -->
+<link href="/css/style.css" rel="stylesheet">
+<!-- color CSS -->
+<link href="/css/colors/megna-dark.css" id="theme" rel="stylesheet">
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+
+</head>
+
+<body class="fix-header">
+	<!-- ============================================================== -->
+	<!-- Header -->
+	<!-- ============================================================== -->
+	<div th:insert="shared/header"></div>
+	<!-- ============================================================== -->
+	<!-- Fin header -->
+	<!-- ============================================================== -->
+
+	<!-- ============================================================== -->
+	<!-- Header -->
+	<!-- ============================================================== -->
+	<div th:insert="shared/navbar"></div>
+	<!-- ============================================================== -->
+	<!-- Fin header -->
+	<!-- ============================================================== -->
+
+
+	<div id="page-wrapper">
+		<div class="container-fluid">
+			<div th:insert="shared/bar"></div>
+			<div class="col-12">
+				<a href="/clientes/agregar-cliente" 
+					class="btn btn-info pull-right m-l-20 hidden-xs hidden-sm waves-effect waves-light">Agregar cliente</a>
+			</div>
+			</div>
+			<div class="row m-5">
+				<div class="col-md-12">
+					<div class="white-box">
+						<h3 class="box-title">Listado de clientes</h3>
+						<div class="table-responsive manage-table">
+							<table class="table" cellspacing="14">
+								<thead>
+									<tr>
+										<th>ID</th>
+										<th>NOMBRE</th>
+										<th>CORREO ELECTRONICO</th>
+										<th>TELEFONO</th>
+										<th>FECHA DE INICIO</th>
+										<th>FECHA DE TERMINO</th>
+										<th>ESTADO</th>
+									    <th>ADMINISTRAR</th>
+									
+									</tr>
+								</thead>
+								<tbody>
+									<div th:each="cliente: ${clientes}">
+									<tr class="advance-table-row">
+										<td th:text="${cliente.id}"></td>
+									    <td th:text="${cliente.nombre}"></td>
+										<td th:text="${cliente.correoElectronico}"></td>
+										<td th:text="${cliente.telefono}"></td>
+										<td th:text="${#dates.format(cliente.fechaInicio, 'dd-MM-yyyy')}"></td>
+										<td th:text="${#dates.format(cliente.fechaTermino, 'dd-MM-yyyy')}"></td>
+										<td th:text="${cliente.activo} ? 'Activo' : 'Inactivo'"></td>
+										<td>
+												<a class="btn btn-danger btn-outline btn-circle btn-lg m-r-5"  th:href="@{'/clientes/eliminar/' + ${cliente.id}}"><i class="icon-trash"></i></a>
+												<a class="btn btn-warning btn-outline btn-circle btn-lg m-r-5" th:href="@{'/clientes/actualizar/' + ${cliente.id}}"><i class="ti-pencil-alt"></i></a>
+                                                <a class="btn btn-primary btn-outline btn-circle btn-lg m-r-5" th:href="@{'/clientes/generar-qr/' + ${cliente.id}}" target="blank"><i class="ti-key"></i></a>
+										</td>
+										
+									</tr>
+									</div>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /.container-fluid -->
+		<footer class="footer text-center"> 2020 &copy; Cross-Gym </footer>
+	</div>
+	<!-- ============================================================== -->
+	<!-- End Page Content -->
+	<!-- ============================================================== -->
+	<!-- /#wrapper -->
+	<!-- jQuery -->
+	<script src="/plugins/bower_components/jquery/dist/jquery.min.js"></script>
+	<!-- Bootstrap Core JavaScript -->
+	<script src="/bootstrap/dist/js/bootstrap.min.js"></script>
+	<!-- Menu Plugin JavaScript -->
+	<script
+		src="/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js"></script>
+	<!--slimscroll JavaScript -->
+	<script src="/js/jquery.slimscroll.js"></script>
+	<!--Wave Effects -->
+	<script src="/js/waves.js"></script>
+	<!-- Custom Theme JavaScript -->
+	<script src="/js/custom.min.js"></script>
+	<!--Style Switcher -->
+	<script
+		src="/plugins/bower_components/styleswitcher/jQuery.style.switcher.js"></script>
+</body>
+
+</html>
