@@ -41,7 +41,7 @@ public class AdministradorGymApplication implements CommandLineRunner {
 				}
 			}
 			emailBody.setContent(texto.toString());
-			emailBody.setEmail("yoyo_jueanes03@gmail.com");
+			emailBody.setEmail("yoyo_juanes03@gmail.com");
 			emailBody.setSubject("Lista de clientes con suscripcion vencida");
 			emailPort.sendEmail(emailBody);
 
