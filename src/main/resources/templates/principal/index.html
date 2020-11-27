@@ -44,6 +44,16 @@
     <div id="page-wrapper">
         <div class="container-fluid">
             <div th:insert="shared/bar">...</div>
+
+            <div class="row" th:if="${#lists.size(clientes) > 0}">
+                <div class="col-md-12">
+                    <div class="white-box">
+                        <h3 class="box-title">Lista de clientes con adeudo</h3>
+                        <p th:each="cliente: ${clientes}" th:text="'Cliente: ' + ${cliente.nombre} + ' y su membrecia se vencio el: '+${cliente.inscripcion.fechaConclusion}"></p>
+                    </div>
+                </div>
+            </div>
+
             <div class="row">
                 <div class="col-md-12">
                     <div class="white-box"> 

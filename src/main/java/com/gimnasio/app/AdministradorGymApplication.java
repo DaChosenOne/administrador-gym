@@ -31,7 +31,6 @@ public class AdministradorGymApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		if(conectadoAInternet()) {
 			SimpleDateFormat formatter1 = new SimpleDateFormat("yyyy-MM-dd");
 			EmailBody emailBody = new EmailBody();
 			StringBuilder texto = new StringBuilder();
@@ -42,13 +41,10 @@ public class AdministradorGymApplication implements CommandLineRunner {
 				}
 			}
 			emailBody.setContent(texto.toString());
-			emailBody.setEmail("doomlord97@gmail.com");
+			emailBody.setEmail("yoyo_jueanes03@gmail.com");
 			emailBody.setSubject("Lista de clientes con suscripcion vencida");
 			emailPort.sendEmail(emailBody);
-		}
+
 	}
-	public boolean conectadoAInternet() throws InterruptedException, IOException, IOException {
-		String comando = "ping -c 1 google.com";
-		return (Runtime.getRuntime().exec(comando).waitFor() == 0);
-	}
+
 }

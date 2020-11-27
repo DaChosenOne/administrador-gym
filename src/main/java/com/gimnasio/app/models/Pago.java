@@ -24,7 +24,9 @@ public class Pago  implements Serializable {
     @JoinColumn(name = "clientes_id")
     private Cliente cliente;
 
-    private Integer numero;
+    private Integer concepto;
+
+    private String motivo;
 
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")

@@ -1,6 +1,7 @@
 package com.gimnasio.app.models;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -50,7 +51,15 @@ public class Cliente implements Serializable {
 	public Cliente() {
     	
     }
-    
+
+	public Inscripcion getInscripcion() {
+		return inscripcion;
+	}
+
+	public void setInscripcion(Inscripcion inscripcion) {
+		this.inscripcion = inscripcion;
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -81,6 +90,22 @@ public class Cliente implements Serializable {
 
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
+	}
+
+	public List<Pago> getPagos() {
+		return pagos;
+	}
+
+	public void agregarPago(Pago pago) {
+		if(this.pagos==null){
+			this.pagos = new ArrayList<>();
+		}else{
+			this.pagos.add(pago);
+		}
+	}
+
+	public void setPagos(List<Pago> pagos) {
+		this.pagos = pagos;
 	}
 
 	@Override

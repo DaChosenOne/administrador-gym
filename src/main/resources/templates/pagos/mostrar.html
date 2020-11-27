@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="icon" type="image/png" sizes="16x16"
+	href="../plugins/images/favicon.png">
+<title>Cross-Sport Gym</title>
+<!-- Bootstrap Core CSS -->
+<link href="/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Menu CSS -->
+<link
+	href="/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css"
+	rel="stylesheet">
+<!-- animation CSS -->
+<link href="/css/animate.css" rel="stylesheet">
+<!-- Custom CSS -->
+<link href="/css/style.css" rel="stylesheet">
+<!-- color CSS -->
+<link href="/css/colors/megna-dark.css" id="theme" rel="stylesheet">
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+
+</head>
+
+<body class="fix-header">
+	<!-- ============================================================== -->
+	<!-- Header -->
+	<!-- ============================================================== -->
+	<div th:insert="shared/header"></div>
+	<!-- ============================================================== -->
+	<!-- Fin header -->
+	<!-- ============================================================== -->
+
+	<!-- ============================================================== -->
+	<!-- Header -->
+	<!-- ============================================================== -->
+	<div th:insert="shared/navbar"></div>
+	<!-- ============================================================== -->
+	<!-- Fin header -->
+	<!-- ============================================================== -->
+
+
+	<div id="page-wrapper">
+		<div class="container-fluid">
+			<div th:insert="shared/bar"></div>
+		</div>
+		<div class="row m-5">
+			<div class="col-md-12">
+				<div class="white-box">
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="white-box">
+								<h3 class="box-title m-b-0" th:text="'Historial de pagos de: '+${cliente.nombre}"></h3>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<!--<div class="card" style="width: 20rem;" >>
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item" th:text="'Identificador: ' + ${pago.id}"></li>
+					<li class="list-group-item" th:text="'Motivo: ' + ${pago.motivo}"></li>
+					<li class="list-group-item" th:text="'Cantidad: ' + ${pago.concepto}"></li>
+					<li class="list-group-item" th:text="'Fecha de pago: ' +${#dates.format(pago.fechaPago, 'dd-MM-yyyy')}"></li>
+
+				</ul>
+			</div>-->
+			<div class="col-lg-4 col-sm-4" th:each="pago: ${cliente.pagos}">
+				<div class="panel panel-info">
+					<div class="panel-heading" th:text="'Identificador: ' + ${pago.id}">
+						<div class="pull-right"><a href="#" data-perform="panel-collapse"><i class="ti-minus"></i></a> <a href="#" data-perform="panel-dismiss"><i class="ti-close"></i></a> </div>
+					</div>
+					<div class="panel-wrapper collapse in" aria-expanded="true">
+						<div class="panel-body">
+							<p th:text="'Motivo: ' + ${pago.motivo}"></p>
+							<p th:text="'Cantidad: $' + ${pago.concepto}"></p>
+							<p th:text="'Fecha de pago: ' +${#dates.format(pago.fechaPago, 'dd-MM-yyyy')}"></p>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+
+	</div>
+	<!-- /.container-fluid -->
+	<footer class="footer text-center"> 2020 &copy; Cross-Gym </footer>
+	</div>
+	<!-- ============================================================== -->
+	<!-- End Page Content -->
+	<!-- ============================================================== -->
+	<!-- /#wrapper -->
+	<!-- jQuery -->
+	<script src="/plugins/bower_components/jquery/dist/jquery.min.js"></script>
+	<!-- Bootstrap Core JavaScript -->
+	<script src="/bootstrap/dist/js/bootstrap.min.js"></script>
+	<!-- Menu Plugin JavaScript -->
+	<script
+		src="/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js"></script>
+	<!--slimscroll JavaScript -->
+	<script src="/js/jquery.slimscroll.js"></script>
+	<!--Wave Effects -->
+	<script src="/js/waves.js"></script>
+	<!-- Custom Theme JavaScript -->
+	<script src="/js/custom.min.js"></script>
+	<!--Style Switcher -->
+	<script
+		src="/plugins/bower_components/styleswitcher/jQuery.style.switcher.js"></script>
+
+	
+	
+		 
+</body>
+</html>
