@@ -32,13 +32,6 @@ public class ClienteController {
 	@GetMapping("/")
 	public String paginaPrincipal(Model model) {
 		List<Cliente> clientes = clienteService.listarClientes();
-		for(Cliente cliente:clientes) {
-			if(cliente.getFechaTermino().before(new Date())) {
-				cliente.setActivo(false);
-				clienteService.crearCliente(cliente);
-			}
-		}
-		
 		model.addAttribute("clientes", clientes);
 		model.addAttribute("titulo","Seccion de clientes");
 		return "clientes/principal";

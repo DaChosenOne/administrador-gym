@@ -1,13 +1,18 @@
 package com.gimnasio.app.models;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -30,29 +35,18 @@ public class Cliente implements Serializable {
     
     String telefono;
     
-    @Column(name = "fecha_inico")
-    @Temporal(TemporalType.DATE)
-    Date fechaInicio;
-    
-    @Column(name = "fecha_termino")
-    @Temporal(TemporalType.DATE)
-    Date fechaTermino;
-    
-    boolean activo = true ;
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "mensualidades_id")
+	List<Mensualidad> inscripciones;
 
+    @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true)
+	@JoinColumn(name = "pagos_id")
+	List<Pago> pagos;
+    
+    @OneToOne(mappedBy = "cliente", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    private Inscripcion inscripcion;
     
     
-    public Cliente(Long id, String nombre, String correoElectronico, String telefono, Date fechaInicio,
-			Date fechaTermino, boolean activo) {
-		this.id = id;
-		this.nombre = nombre;
-		this.correoElectronico = correoElectronico;
-		this.telefono = telefono;
-		this.fechaInicio = fechaInicio;
-		this.fechaTermino = fechaTermino;
-		this.activo = activo;
-	}
-
 	public Cliente() {
     	
     }
@@ -89,36 +83,13 @@ public class Cliente implements Serializable {
 		this.telefono = telefono;
 	}
 
-	public Date getFechaInicio() {
-		return fechaInicio;
-	}
-
-	public void setFechaInicio(Date fechaInicio) {
-		this.fechaInicio = fechaInicio;
-	}
-
-	public Date getFechaTermino() {
-		return fechaTermino;
-	}
-
-	public void setFechaTermino(Date fechaTermino) {
-		this.fechaTermino = fechaTermino;
-	}
-
-	public boolean isActivo() {
-		return activo;
-	}
-
-	public void setActivo(boolean activo) {
-		this.activo = activo;
-	}
-
 	@Override
 	public String toString() {
 		return "Cliente [id=" + id + ", nombre=" + nombre + ", correoElectronico=" + correoElectronico + ", telefono="
-				+ telefono + ", fechaInicio=" + fechaInicio + ", fechaTermino=" + fechaTermino + ", activo=" + activo
-				+ "]";
+				+ telefono + "]";
 	}
 
+
+	
 	
 }

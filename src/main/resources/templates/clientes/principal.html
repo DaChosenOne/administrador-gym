@@ -64,9 +64,6 @@
 										<th>NOMBRE</th>
 										<th>CORREO ELECTRONICO</th>
 										<th>TELEFONO</th>
-										<th>FECHA DE INICIO</th>
-										<th>FECHA DE TERMINO</th>
-										<th>ESTADO</th>
 									    <th>ADMINISTRAR</th>
 									
 									</tr>
@@ -78,9 +75,6 @@
 									    <td th:text="${cliente.nombre}"></td>
 										<td th:text="${cliente.correoElectronico}"></td>
 										<td th:text="${cliente.telefono}"></td>
-										<td th:text="${#dates.format(cliente.fechaInicio, 'dd-MM-yyyy')}"></td>
-										<td th:text="${#dates.format(cliente.fechaTermino, 'dd-MM-yyyy')}"></td>
-										<td th:text="${cliente.activo} ? 'Activo' : 'Inactivo'"></td>
 										<td>
 												<a sec:authorize="hasAuthority('ADMIN_ROLE')" class="btn btn-danger btn-outline btn-circle btn-lg m-r-5"  th:href="@{'/clientes/eliminar/' + ${cliente.id}}"><i class="icon-trash"></i></a>
 												<a class="btn btn-warning btn-outline btn-circle btn-lg m-r-5" th:href="@{'/clientes/actualizar/' + ${cliente.id}}"><i class="ti-pencil-alt"></i></a>
